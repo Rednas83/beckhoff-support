@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="MAIN" Id="{ed6cf280-cdd3-4860-bfde-a99a4c55cb3f}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	State: (INIT, OFF, ON, WARNING, ERROR); // {attribute 'to_string'}
+	oState: STRING;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// ISSUE: Implicit/Private enum converts index instead of value when using TO_STRING
+State := ON;
+oState := TO_STRING(State); // EXP='OFF' ACT='2']]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
